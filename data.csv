@@ -1,0 +1,66 @@
+Country,APT Group,Attacks,Type,Year
+USA,APT29,15,Phishing,2023
+USA,APT29,10,Malware,2023
+USA,APT28,8,Exploitation de vulnérabilités,2023
+USA,APT31,12,Credential Theft,2024
+USA,APT41,6,Ransomware,2024
+France,APT28,12,Phishing,2023
+France,APT28,5,Malware,2023
+France,APT31,7,Exploitation de vulnérabilités,2024
+France,APT29,4,Ransomware,2024
+Germany,APT28,20,Phishing,2023
+Germany,APT28,10,Malware,2023
+Germany,APT29,14,Credential Theft,2024
+Germany,APT41,9,Supply Chain Attack,2024
+UK,APT29,18,Phishing,2023
+UK,APT29,7,Malware,2023
+UK,APT31,10,Exploitation de vulnérabilités,2024
+UK,APT41,5,Ransomware,2024
+Japan,APT10,25,Exploitation de vulnérabilités,2023
+Japan,APT10,15,Phishing,2023
+Japan,APT29,12,Malware,2024
+Japan,APT41,8,Ransomware,2024
+South Korea,APT37,22,Malware,2023
+South Korea,APT37,12,Phishing,2023
+South Korea,APT10,10,Credential Theft,2024
+South Korea,APT41,6,Ransomware,2024
+Australia,APT32,10,Phishing,2023
+Australia,APT32,5,Malware,2023
+Australia,APT29,6,Exploitation de vulnérabilités,2024
+Australia,APT41,3,Ransomware,2024
+Canada,APT29,8,Phishing,2023
+Canada,APT29,4,Malware,2023
+Canada,APT41,5,Supply Chain Attack,2024
+Canada,APT31,3,Ransomware,2024
+India,APT41,14,Exploitation de vulnérabilités,2023
+India,APT41,9,Phishing,2023
+India,APT10,7,Credential Theft,2024
+India,APT31,6,Ransomware,2024
+Brazil,APT28,7,Phishing,2023
+Brazil,APT28,3,Malware,2023
+Brazil,APT41,5,Exploitation de vulnérabilités,2024
+Brazil,APT29,2,Ransomware,2024
+South Africa,APT29,5,Phishing,2023
+South Africa,APT29,2,Malware,2023
+South Africa,APT41,4,Credential Theft,2024
+South Africa,APT28,3,Ransomware,2024
+Russia,APT29,20,Credential Theft,2023
+Russia,APT28,15,Phishing,2023
+Russia,APT41,12,Supply Chain Attack,2024
+Russia,APT31,9,Ransomware,2024
+China,APT41,30,Exploitation de vulnérabilités,2023
+China,APT10,18,Credential Theft,2023
+China,APT29,15,Phishing,2024
+China,APT31,12,Ransomware,2024
+Iran,APT33,12,Phishing,2023
+Iran,APT34,7,Malware,2023
+Iran,APT39,5,Credential Theft,2024
+Iran,APT41,4,Ransomware,2024
+North Korea,APT37,22,Malware,2023
+North Korea,APT38,19,Cryptojacking,2023
+North Korea,APT39,15,Phishing,2024
+North Korea,APT41,8,Ransomware,2024
+Israel,APT34,10,Phishing,2023
+Israel,APT41,6,Malware,2023
+Israel,APT39,5,Credential Theft,2024
+Israel,APT31,4,Ransomware,2024
