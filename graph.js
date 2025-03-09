@@ -1,4 +1,3 @@
-// Variables pour le graphique
 const graphWidth = 600;
 const graphHeight = 200;
 const graphMargin = { top: 50, right: 30, bottom: 50, left: 60 };
@@ -9,14 +8,12 @@ const svgGraph = d3.select("#graph")
     .append("g")
     .attr("transform", `translate(${graphMargin.left}, ${graphMargin.top})`);
 
-// Charger les données CSV
 d3.csv("data.csv").then((data) => {
 
     const colorScale = d3.scaleLinear()
         .domain([0, d3.max(data, d => +d.Attacks) || 1])
-        .range(["white", "red"]);
+        .range(["rgba(255, 255, 255)", "rgba(216, 38, 0)"]);
 
-    // Fonction de mise à jour du graphique
     function updateGraph() {
         const selectedType = document.querySelector("#filters input:checked")?.value;
 
@@ -45,7 +42,6 @@ d3.csv("data.csv").then((data) => {
 
         svgGraph.selectAll(".grid-line").remove();
 
-        // Ajouter les lignes de référence tous les 5 unités
         const yTicks = d3.range(0, d3.max(attackCountries, d => d.Attacks) + 1, 5);
         svgGraph.selectAll(".grid-line")
             .data(yTicks)
@@ -55,8 +51,8 @@ d3.csv("data.csv").then((data) => {
             .attr("x2", graphWidth - graphMargin.left - graphMargin.right)
             .attr("y1", d => yScale(d))
             .attr("y2", d => yScale(d))
-            .attr("stroke", "gray")
-            .attr("dasharray", "3,3") // Ligne pointillée
+            .attr("stroke", "#ffffff95")
+            .attr("dasharray", "3,3")
             .attr("opacity", 0.5)
             .lower();
 
@@ -67,12 +63,22 @@ d3.csv("data.csv").then((data) => {
             .call(d3.axisBottom(xScale))
             .selectAll("text")
             .attr("transform", "rotate(-20)")
-            .style("text-anchor", "end");
+            .style("text-anchor", "end")
+            .style("font-family", '"Fira Mono", monospace')
+            .style("fill", "#ffffff95");
+        
+        svgGraph.select(".x-axis path, .x-axis line")
+            .attr("stroke", "#ffffff95");
+        
+        svgGraph.selectAll(".x-axis .tick line")
+            .attr("stroke", "#ffffff95");
 
         svgGraph.selectAll(".y-axis").remove();
         svgGraph.append("g")
             .attr("class", "y-axis")
-            .call(d3.axisLeft(yScale));
+            .call(d3.axisLeft(yScale))
+            .style("font-family", '"Fira Mono", monospace')
+            .style("color", "#ffffff95")
 
         svgGraph.selectAll("rect")
             .data(attackCountries)
@@ -80,13 +86,13 @@ d3.csv("data.csv").then((data) => {
                 enter => enter.append("rect")
                     .attr("x", d => xScale(d.Country))
                     .attr("width", xScale.bandwidth())
-                    .attr("y", graphHeight - graphMargin.top - graphMargin.bottom) // Démarre à partir de l'axe X
-                    .attr("height", 0) // Hauteur initiale à 0
+                    .attr("y", graphHeight - graphMargin.top - graphMargin.bottom)
+                    .attr("height", 0)
                     .attr("fill", d => colorScale(d.Attacks))
                     .transition()
                     .duration(800)
                     .ease(d3.easeCubicOut)
-                    .attr("y", d => yScale(d.Attacks)) // La hauteur de la barre selon les attaques
+                    .attr("y", d => yScale(d.Attacks))
                     .attr("height", d => graphHeight - graphMargin.top - graphMargin.bottom - yScale(d.Attacks)),
 
                 update => update
@@ -95,28 +101,16 @@ d3.csv("data.csv").then((data) => {
                     .ease(d3.easeCubicOut)
                     .attr("x", d => xScale(d.Country))
                     .attr("width", xScale.bandwidth())
-                    .attr("y", d => yScale(d.Attacks)) // Recalcule la position Y
+                    .attr("y", d => yScale(d.Attacks))
                     .attr("height", d => graphHeight - graphMargin.top - graphMargin.bottom - yScale(d.Attacks)),
 
                 exit => exit.remove()
             );
-
-        // Ajouter les noms des pays sous les barres
-        svgGraph.selectAll(".country-name")
-            .data(attackCountries)
-            .join("text")
-            .attr("class", "country-name")
-            .attr("x", d => xScale(d.Country) + xScale.bandwidth() / 2)
-            .attr("y", graphHeight - graphMargin.bottom + 15) // Positionner sous l'axe X
-            .attr("text-anchor", "middle")
-            .text(d => d.Country);
     }
 
-    // Mettre à jour le graphique au changement du radio button
     document.querySelectorAll("#filters input").forEach(input => {
         input.addEventListener("change", updateGraph);
     });
 
-    // Initialiser le graphique
     updateGraph();
 });

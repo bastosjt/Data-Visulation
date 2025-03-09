@@ -1,8 +1,13 @@
-// Variables pour la carte
-const mapWidth = 700, mapHeight = 500;
+const mapWidth = 700, mapHeight = 450;
+const legendWidth = 250, legendHeight = 10;
+
 const svgMap = d3.select("#map")
     .attr("width", mapWidth)
     .attr("height", mapHeight);
+
+const svgLegend = d3.select("#legend")
+    .attr("width", legendWidth)
+    .attr("height", legendHeight + 30);
 
 const projection = d3.geoNaturalEarth1()
     .scale(125)
@@ -10,13 +15,11 @@ const projection = d3.geoNaturalEarth1()
 
 const path = d3.geoPath().projection(projection);
 
-// Charger les données GeoJSON et CSV
 Promise.all([
     d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson"),
     d3.csv("data.csv")
 ]).then(([world, data]) => {
 
-    // Générer dynamiquement les filtres radio
     const attackTypes = Array.from(new Set(data.map(d => d.Type)));
     const filtersDiv = document.getElementById("filters");
 
@@ -26,30 +29,20 @@ Promise.all([
             <input type="radio" name="attackType" value="${type}" ${index === 0 ? 'checked' : ''}> 
             ${type}
         `;
-        // Ajoutez une classe pour identifier les labels
         label.classList.add("radio-label");
         filtersDiv.appendChild(label);
     });
 
-    // Fonction pour appliquer les styles au radio bouton sélectionné
     function applyCheckedStyle() {
-        // Appliquer les styles au radio bouton initialement sélectionné
         const checkedLabel = document.querySelector("#filters input:checked");
         if (checkedLabel) {
             const label = checkedLabel.parentElement;
-            label.style.backgroundColor = "#007BFF"; // Fond bleu
-            label.style.color = "#FFFFFF"; // Texte blanc
-            label.style.border = "2px solid #FFFFFF"; // Bordure blanche
-
-            // Appliquer la bordure blanche au pseudo-élément :before
-            const beforeElement = label.querySelector("::before");
-            if (beforeElement) {
-                beforeElement.style.borderColor = "#FFFFFF"; // Bordure blanche
-            }
+            label.style.backgroundColor = "#007BFF";
+            label.style.color = "#FFFFFF";
+            label.style.border = "2px solid #007BFF";
         }
     }
 
-    // Fonction de mise à jour de la carte
     function updateMap() {
         const selectedType = document.querySelector("#filters input:checked")?.value;
 
@@ -66,56 +59,95 @@ Promise.all([
             d => d.Country
         );
 
-        const maxAttacks = d3.max(Array.from(attackData.values()));
+        const maxAttacks = d3.max(Array.from(attackData.values())) || 1;
         const colorScale = d3.scaleLinear()
-            .domain([0, maxAttacks || 1])
-            .range(["white", "red"]);
+            .domain([0, maxAttacks])
+            .range(["rgba(255, 255, 255)", "rgba(216, 38, 0)"]);
 
         svgMap.selectAll("path")
             .data(world.features)
             .join("path")
             .attr("d", path)
-            .attr("stroke", "black")
-            .transition()  // Début de l'animation
-            .duration(250) // Durée de 500ms
-            .ease(d3.easeCubicInOut) // Animation fluide
+            .attr("stroke", "rgb(67, 75, 101)")
+            .transition()
+            .duration(250)
+            .ease(d3.easeCubicInOut)
             .attrTween("fill", function(d) {
                 const currentColor = d3.select(this).attr("fill") || "white";
-                const targetColor = attackData.has(d.properties.name) ? colorScale(attackData.get(d.properties.name)) : "white";
+                const targetColor = attackData.has(d.properties.name) ? colorScale(attackData.get(d.properties.name)) : "rgba(67, 75, 101, 0.25)";
                 return d3.interpolate(currentColor, targetColor);
-        });
-        
-
-    }
-
-    // Mettre à jour la carte au changement du radio button
-    document.querySelectorAll("#filters input").forEach(input => {
-        input.addEventListener("change", function() {
-            // Réinitialiser les styles de fond des labels et des pseudo-éléments
-            document.querySelectorAll("#filters label").forEach(label => {
-                label.style.backgroundColor = ""; // Enlever la couleur de fond
-                label.style.color = "#007BFF"; // Restaurer la couleur du texte en bleu
-                label.style.border = "2px solid #007BFF"; // Restaurer la bordure bleue
-
-                // Réinitialiser la bordure du pseudo-élément :before
-                const beforeElement = label.querySelector("::before");
-                if (beforeElement) {
-                    beforeElement.style.borderColor = "#007BFF"; // Rétablir la bordure bleue
-                }
             });
 
-            // Appliquer un fond bleu, texte et bordure blanche au label du radio bouton coché
-            const label = this.parentElement;
-            label.style.backgroundColor = "#007BFF"; // Fond bleu
-            label.style.color = "#FFFFFF"; // Texte blanc
+        updateLegend(maxAttacks);
+    }
 
-            updateMap(); // Mettre à jour la carte
+    function updateLegend(maxAttacks) {
+        svgLegend.selectAll("*").remove();
+    
+        const reducedLegendWidth = legendWidth - 50;
+    
+        const defs = svgLegend.append("defs");
+        const linearGradient = defs.append("linearGradient")
+            .attr("id", "legend-gradient")
+            .attr("x1", "0%")
+            .attr("x2", "100%")
+            .attr("y1", "0%")
+            .attr("y2", "0%");
+    
+        linearGradient.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "rgba(255, 255, 255)");
+    
+        linearGradient.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "rgba(216, 38, 0)");
+    
+            svgLegend.append("rect")
+            .attr("x", 15)
+            .attr("y", 0)
+            .attr("width", reducedLegendWidth - 35)
+            .attr("height", legendHeight)
+            .style("fill", "url(#legend-gradient)")
+            .style("rx", 5)
+            .style("ry", 5);
+        
+        svgLegend.append("text")
+            .attr("x", 0)
+            .attr("y", legendHeight)
+            .attr("fill", "#fff")
+            .style("font-size", "12px")
+            .style("text-anchor", "start")
+            .style("font-family", '"Fira Mono", monospace')
+            .style("fill", "#ffffff95")
+            .text("0");
+    
+        svgLegend.append("text")
+            .attr("x", reducedLegendWidth)
+            .attr("y", legendHeight)
+            .attr("fill", "#fff")
+            .style("font-size", "12px")
+            .style("text-anchor", "end")
+            .style("font-family", '"Fira Mono", monospace')
+            .style("fill", "#ffffff95")
+            .text(maxAttacks);
+    }    
+
+    document.querySelectorAll("#filters input").forEach(input => {
+        input.addEventListener("change", function() {
+            document.querySelectorAll("#filters label").forEach(label => {
+                label.style.backgroundColor = "";
+                label.style.color = "#007BFF";
+                label.style.border = "2px solid #007BFF";
+            });
+
+            const label = this.parentElement;
+            label.style.backgroundColor = "#007BFF";
+            label.style.color = "#FFFFFF";
+
+            updateMap();
         });
     });
 
-    // Appliquer le style au premier radio bouton coché (si existe)
     applyCheckedStyle();
-
-    // Initialiser la carte
     updateMap();
 });
