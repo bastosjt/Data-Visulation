@@ -3,15 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Data Visulation</title>
+    <title>APT - Data Visulation</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
+    <div id="header">
+        <div id="header_det">
+            <h1>Projet Data Visulation</h1>
+            <p>Bastien JAMET & Charles CLERC</p>
+        </div>
+    </div>
     <h1 id="data_title">APT (Advanced Persistent Threat) et leurs attaques - 2023 & 2024</h1>
-    <svg id="graph"></svg>
-    <svg id="map"></svg>
-    <div id="filters"></div>
-    <script src="map.js"></script>
-    <script src="graph.js"></script>
+    <div id="data">
+        <div id="filters"></div>
+
+        <div id="data_visulation">
+            <div id="map_details">
+                <h1>ATTAQUES PAR PAYS - CARTE</h1>
+                <svg id="map"></svg>
+            </div>
+            <div id="data_details">
+                <div id="graph_details">
+                    <h1>ATTAQUES PAR PAYS - TOTAL</h1>
+                    <svg id="graph"></svg>
+                </div>
+                <div id="chartpie_details">
+                    <h1>ATTAQUES PAR ATTAQUANTS - TOTAL</h1>
+                    <div id="chartpie"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="map.js"></script>
+        <script src="graph.js"></script>
+        <script src="chartpie.js"></script>
+    </div>
 </body>
 </html>

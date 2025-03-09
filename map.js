@@ -26,18 +26,26 @@ Promise.all([
             <input type="radio" name="attackType" value="${type}" ${index === 0 ? 'checked' : ''}> 
             ${type}
         `;
+        // Ajoutez une classe pour identifier les labels
         label.classList.add("radio-label");
         filtersDiv.appendChild(label);
     });
 
     // Fonction pour appliquer les styles au radio bouton sélectionné
     function applyCheckedStyle() {
+        // Appliquer les styles au radio bouton initialement sélectionné
         const checkedLabel = document.querySelector("#filters input:checked");
         if (checkedLabel) {
             const label = checkedLabel.parentElement;
-            label.style.backgroundColor = "#007BFF";
-            label.style.color = "#FFFFFF";
-            label.style.border = "2px solid #FFFFFF";
+            label.style.backgroundColor = "#007BFF"; // Fond bleu
+            label.style.color = "#FFFFFF"; // Texte blanc
+            label.style.border = "2px solid #FFFFFF"; // Bordure blanche
+
+            // Appliquer la bordure blanche au pseudo-élément :before
+            const beforeElement = label.querySelector("::before");
+            if (beforeElement) {
+                beforeElement.style.borderColor = "#FFFFFF"; // Bordure blanche
+            }
         }
     }
 
@@ -68,28 +76,40 @@ Promise.all([
             .join("path")
             .attr("d", path)
             .attr("stroke", "black")
-            .transition()
+            .transition()  // Début de l'animation
+            .duration(250) // Durée de 500ms
+            .ease(d3.easeCubicInOut) // Animation fluide
             .attrTween("fill", function(d) {
                 const currentColor = d3.select(this).attr("fill") || "white";
                 const targetColor = attackData.has(d.properties.name) ? colorScale(attackData.get(d.properties.name)) : "white";
                 return d3.interpolate(currentColor, targetColor);
         });
+        
+
     }
 
     // Mettre à jour la carte au changement du radio button
     document.querySelectorAll("#filters input").forEach(input => {
         input.addEventListener("change", function() {
+            // Réinitialiser les styles de fond des labels et des pseudo-éléments
             document.querySelectorAll("#filters label").forEach(label => {
-                label.style.backgroundColor = "";
-                label.style.color = "#007BFF";
-                label.style.border = "2px solid #007BFF";
+                label.style.backgroundColor = ""; // Enlever la couleur de fond
+                label.style.color = "#007BFF"; // Restaurer la couleur du texte en bleu
+                label.style.border = "2px solid #007BFF"; // Restaurer la bordure bleue
+
+                // Réinitialiser la bordure du pseudo-élément :before
+                const beforeElement = label.querySelector("::before");
+                if (beforeElement) {
+                    beforeElement.style.borderColor = "#007BFF"; // Rétablir la bordure bleue
+                }
             });
 
+            // Appliquer un fond bleu, texte et bordure blanche au label du radio bouton coché
             const label = this.parentElement;
-            label.style.backgroundColor = "#007BFF";
-            label.style.color = "#FFFFFF";
+            label.style.backgroundColor = "#007BFF"; // Fond bleu
+            label.style.color = "#FFFFFF"; // Texte blanc
 
-            updateMap();
+            updateMap(); // Mettre à jour la carte
         });
     });
 

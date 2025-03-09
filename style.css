@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #e2e6e7;
+    margin: 15px;
+}
+
+#header{
+    background-color:  #007BFF;
+    color: #ecf0f1;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 10px;
+}
+
+#header h1{
+    padding: 10px;
+    font-weight: 700;
+}
+
+#header p{
+    padding-bottom: 10px;
+}
+
+#data{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 25px;
+}
+
+#data_title{
+    margin: 25px 0 10px 0;
+    background-color: #384c54;
+    padding: 15px 25px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 1.3rem;
+    color: #ffffff;
+}
+
+#filters{
+    margin: 15px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 5px;
+    padding: 7px;
+    cursor: pointer;
+    border: 2px solid #007BFF;
+    border-radius: 10px;
+    color: #007BFF;
+    transition: background-color 0.2s ease, color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.3s ease;
+}
+
+label:hover{
+    box-shadow: 0px 0px 15px 1px rgba(0,123,255,0.75);
+}
+
+#data_visulation{
+    display: flex;
+}
+
+#map_details, #graph_details, #chartpie_details{
+    box-shadow: 0px 0px 10px 7px rgba(151, 151, 151, 0.566);
+}
+
+#graph_details, #chartpie_details{
+    margin-left: 25px;
+}
+
+#map_details h1, #graph_details h1, #chartpie_details h1{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    position: absolute;
+    margin: 10px 15px;
+    color: #384c54;
+}
