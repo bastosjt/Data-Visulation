@@ -1,4 +1,4 @@
-const mapWidth = 700, mapHeight = 475;
+const mapWidth = 600, mapHeight = 450;
 const legendWidth = 250, legendHeight = 10;
 
 const svgMap = d3.select("#map")
@@ -10,7 +10,7 @@ const svgLegend = d3.select("#legend")
     .attr("height", legendHeight + 30);
 
 const projection = d3.geoNaturalEarth1()
-    .scale(125)
+    .scale(105)
     .translate([mapWidth / 2, mapHeight / 2]);
 
 const path = d3.geoPath().projection(projection);
@@ -37,9 +37,10 @@ Promise.all([
         const checkedLabel = document.querySelector("#filters input:checked");
         if (checkedLabel) {
             const label = checkedLabel.parentElement;
-            label.style.backgroundColor = "#007BFF";
-            label.style.color = "#FFFFFF";
-            label.style.border = "2px solid #007BFF";
+            label.style.backgroundColor = "#242936";
+            label.style.color = "#242936";
+            label.style.border = "2px solid #242936";
+            label.style.boxShadow = "inset 0px 0px 50px 1px rgba(0, 255, 255)";
         }
     }
 
@@ -84,7 +85,7 @@ Promise.all([
     function updateLegend(maxAttacks) {
         svgLegend.selectAll("*").remove();
     
-        const reducedLegendWidth = legendWidth - 50;
+        const reducedLegendWidth = legendWidth;
     
         const defs = svgLegend.append("defs");
         const linearGradient = defs.append("linearGradient")
@@ -135,14 +136,16 @@ Promise.all([
     document.querySelectorAll("#filters input").forEach(input => {
         input.addEventListener("change", function() {
             document.querySelectorAll("#filters label").forEach(label => {
-                label.style.backgroundColor = "";
-                label.style.color = "#007BFF";
-                label.style.border = "2px solid #007BFF";
+                label.style.backgroundColor = "#242936";
+                label.style.color = "cyan";
+                label.style.border = "2px solid #242936";
+                label.style.boxShadow = "inset 0px 0px 15px 2px rgba(0,0,0,0.25)";
             });
 
             const label = this.parentElement;
-            label.style.backgroundColor = "#007BFF";
-            label.style.color = "#FFFFFF";
+            label.style.backgroundColor = "#242936";
+            label.style.color = "#242936";
+            label.style.boxShadow = "inset 0px 0px 50px 1px rgba(0, 255, 255)";
 
             updateMap();
         });

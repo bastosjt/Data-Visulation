@@ -1,4 +1,4 @@
-const graphWidth = 600;
+const graphWidth = 500;
 const graphHeight = 200;
 const graphMargin = { top: 50, right: 30, bottom: 50, left: 60 };
 

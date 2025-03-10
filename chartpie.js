@@ -24,8 +24,8 @@ d3.csv("data.csv").then((data) => {
             return;
         }
 
-        const width = 200;
-        const height = 200;
+        const width = 175;
+        const height = 175;
         const radius = Math.min(width, height) / 2;
 
         let svg = d3.select("#chartpie svg");

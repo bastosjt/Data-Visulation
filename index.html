@@ -6,6 +6,7 @@
     <title>APT - Data Visulation</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,34 +17,70 @@
             <h1>Projet Data Visulation</h1>
             <p>Bastien JAMET & Charles CLERC</p>
         </div>
+         <div id="particles_js"></div>
     </div>
     <h1 id="data_title">APT (Advanced Persistent Threat) et leurs attaques - 2023 & 2024</h1>
     <div id="data">
-        <div id="filters"></div>
-
-        <div id="data_visulation">
-            <div id="map_details">
-                <h1>ATTAQUES PAR PAYS - CARTE</h1>
-                <svg id="map"></svg>
-                <svg id="legend"></svg>
-            </div>
-            <div id="data_details">
-                <div id="graph_details">
-                    <h1>ATTAQUES PAR PAYS - TOTAL</h1>
-                    <svg id="graph"></svg>
+        <div id="filters">
+            <h1>TYPE D'ATTAQUE</h1>
+        </div>
+        <div id="data_det">
+            <div id="data_visulation">
+                <div id="map_details">
+                    <h1>ATTAQUES PAR PAYS - CARTE</h1>
+                    <svg id="map"></svg>
+                    <svg id="legend"></svg>
                 </div>
-                <div id="chartpie_details">
-                    <h1>ATTAQUES PAR ATTAQUANTS - TOTAL</h1>
-                    <div id="chartpie_data">
-                        <svg id="chartpie"></svg>
-                        <svg id="chartpie_text"></svg>
+                <div id="data_details">
+                    <div id="graph_details">
+                        <h1>ATTAQUES PAR PAYS - TOTAL</h1>
+                        <svg id="graph"></svg>
                     </div>
+                    <div id="chartpie_details">
+                        <h1>ATTAQUES PAR ATTAQUANTS - TOTAL</h1>
+                        <div id="chartpie_data">
+                            <svg id="chartpie"></svg>
+                            <svg id="chartpie_text"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="data_visulation">
+                <div id="graph_details_2023_2024">
+                    <h1>ATTAQUES PAR MOIS - TOTAL</h1>
+                    <svg id="graph_2023_2024"></svg>
                 </div>
             </div>
         </div>
         <script src="map.js"></script>
         <script src="graph.js"></script>
         <script src="chartpie.js"></script>
+        <script>
+            particlesJS("particles_js", {
+                particles: {
+                    number: { value: 150 },
+                    color: { value: "#00ffff" },
+                    shape: { type: "triangle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 120,
+                        color: "#00ffff",
+                        opacity: 0.5,
+                        width: 2
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out"
+                    }
+                }
+            });
+        </script>
     </div>
 </body>
 </html>
