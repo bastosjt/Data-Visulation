@@ -1,4 +1,4 @@
-const mapWidth = 700, mapHeight = 450;
+const mapWidth = 700, mapHeight = 475;
 const legendWidth = 250, legendHeight = 10;
 
 const svgMap = d3.select("#map")

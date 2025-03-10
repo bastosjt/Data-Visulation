@@ -108,6 +108,10 @@ label:hover{
     margin-left: 25px;
 }
 
+#chartpie_details{
+    margin-top: 25px;
+}
+
 #map_details h1, #graph_details h1, #chartpie_details h1{
     font-family: "Fira Mono", monospace;
     font-weight: 400;
@@ -126,4 +130,20 @@ label:hover{
 #legend{
     height: 20px;
     margin: 0 auto;
+}
+
+#chartpie_data{
+    display: flex;
+}
+
+#chartpie{
+    height: 200px;
+    width: 200px;
+    padding: 50px 50px 15px 100px;
+}
+
+#chartpie_text{
+    height: 190px;
+    width: 200px;
+    padding: 50px 50px 15px 0px;
 }
