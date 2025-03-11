@@ -74,7 +74,7 @@ body{
     max-width: 1400px;
 }
 
-#filters{
+#filters, #donut_2023_2024{
     font-family: "Pontano Sans", sans-serif;
     font-weight: 600;
     display: flex;
@@ -84,13 +84,14 @@ body{
     height: 450px;
 }
 
-#filters h1{
+#filters h1, #donut_2023_2024 h1{
     font-family: "Fira Mono", monospace;
     font-weight: 400;
     font-style: normal;
     font-size: 1rem;
     margin: 15px 15px 15px 0px;
     color: #ffffff;
+    text-transform: uppercase;
 }
 
 input[type="radio"] {
@@ -112,11 +113,16 @@ label {
     box-shadow: inset 0px 0px 15px 2px rgba(0,0,0,0.25);
 }
 
+#donut_2023_2024{
+    margin-top: 24px;
+    height: 270px;
+}
+
 #data_visulation{
     display: flex;
 }
 
-#filters, #map_details, #graph_details, #chartpie_details, #graph_details_2023_2024{
+#filters, #map_details, #graph_details, #chartpie_details, #graph_details_2023_2024, #donut_2023_2024{
     box-shadow: 0px 0px 10px 7px rgba(255, 255, 255, 0.075);
     background-color: #1a1d27;
     border-radius: 5px;
@@ -176,5 +182,5 @@ label {
 #graph_details_2023_2024{
     margin-top: 25px;
     width: 1125px;
-    height: 500px;
+    height: 300px;
 }

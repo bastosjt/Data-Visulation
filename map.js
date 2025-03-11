@@ -33,7 +33,19 @@ Promise.all([
         filtersDiv.appendChild(label);
     });
 
+    const firstRadio = document.querySelector("#filters input");
+    if (firstRadio) {
+        firstRadio.checked = true;
+    }
+
     function applyCheckedStyle() {
+        document.querySelectorAll("#filters label").forEach(label => {
+            label.style.backgroundColor = "#242936";
+            label.style.color = "cyan";
+            label.style.border = "2px solid #242936";
+            label.style.boxShadow = "inset 0px 0px 15px 2px rgba(0,0,0,0.25)";
+        });
+
         const checkedLabel = document.querySelector("#filters input:checked");
         if (checkedLabel) {
             const label = checkedLabel.parentElement;
@@ -103,7 +115,7 @@ Promise.all([
             .attr("offset", "100%")
             .attr("stop-color", "rgba(216, 38, 0)");
     
-            svgLegend.append("rect")
+        svgLegend.append("rect")
             .attr("x", 15)
             .attr("y", 0)
             .attr("width", reducedLegendWidth - 35)
@@ -135,18 +147,7 @@ Promise.all([
 
     document.querySelectorAll("#filters input").forEach(input => {
         input.addEventListener("change", function() {
-            document.querySelectorAll("#filters label").forEach(label => {
-                label.style.backgroundColor = "#242936";
-                label.style.color = "cyan";
-                label.style.border = "2px solid #242936";
-                label.style.boxShadow = "inset 0px 0px 15px 2px rgba(0,0,0,0.25)";
-            });
-
-            const label = this.parentElement;
-            label.style.backgroundColor = "#242936";
-            label.style.color = "#242936";
-            label.style.boxShadow = "inset 0px 0px 50px 1px rgba(0, 255, 255)";
-
+            applyCheckedStyle();
             updateMap();
         });
     });
