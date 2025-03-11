@@ -1,0 +1,148 @@
+Country,APT Group,Attacks,Type,Year,Month
+USA,APT29,1,Phishing,2023,March
+USA,APT29,4,Phishing,2023,February
+USA,APT29,5,Phishing,2023,November
+USA,APT29,5,Phishing,2023,August
+USA,APT29,2,Malware,2023,December
+USA,APT29,1,Malware,2023,August
+USA,APT29,3,Malware,2023,July
+USA,APT29,1,Malware,2023,April
+USA,APT29,1,Malware,2023,July
+USA,APT29,1,Malware,2023,November
+USA,APT29,1,Malware,2023,March
+USA,APT28,5,Exploitation de vulnérabilités,2023,January
+USA,APT28,1,Exploitation de vulnérabilités,2023,June
+USA,APT28,2,Exploitation de vulnérabilités,2023,July
+France,APT28,5,Phishing,2023,March
+France,APT28,5,Phishing,2023,December
+France,APT28,2,Phishing,2023,August
+France,APT28,5,Malware,2023,November
+Germany,APT28,2,Phishing,2023,January
+Germany,APT28,5,Phishing,2023,March
+Germany,APT28,4,Phishing,2023,December
+Germany,APT28,5,Phishing,2023,May
+Germany,APT28,3,Phishing,2023,January
+Germany,APT28,1,Phishing,2023,September
+Germany,APT28,1,Malware,2023,January
+Germany,APT28,3,Malware,2023,April
+Germany,APT28,4,Malware,2023,July
+Germany,APT28,1,Malware,2023,March
+Germany,APT28,1,Malware,2023,August
+UK,APT29,5,Phishing,2023,November
+UK,APT29,1,Phishing,2023,November
+UK,APT29,2,Phishing,2023,November
+UK,APT29,3,Phishing,2023,December
+UK,APT29,5,Phishing,2023,May
+UK,APT29,2,Phishing,2023,July
+UK,APT29,1,Malware,2023,September
+UK,APT29,4,Malware,2023,January
+UK,APT29,1,Malware,2023,November
+UK,APT29,1,Malware,2023,October
+Japan,APT10,3,Exploitation de vulnérabilités,2023,June
+Japan,APT10,5,Exploitation de vulnérabilités,2023,April
+Japan,APT10,4,Exploitation de vulnérabilités,2023,July
+Japan,APT10,1,Exploitation de vulnérabilités,2023,August
+Japan,APT10,3,Exploitation de vulnérabilités,2023,February
+Japan,APT10,1,Exploitation de vulnérabilités,2023,November
+Japan,APT10,5,Exploitation de vulnérabilités,2023,December
+Japan,APT10,2,Exploitation de vulnérabilités,2023,December
+Japan,APT10,1,Exploitation de vulnérabilités,2023,February
+Japan,APT10,4,Phishing,2023,May
+Japan,APT10,5,Phishing,2023,June
+Japan,APT10,5,Phishing,2023,September
+Japan,APT10,1,Phishing,2023,January
+South Korea,APT37,2,Malware,2023,November
+South Korea,APT37,3,Malware,2023,March
+South Korea,APT37,5,Malware,2023,June
+South Korea,APT37,5,Malware,2023,March
+South Korea,APT37,4,Malware,2023,June
+South Korea,APT37,2,Malware,2023,June
+South Korea,APT37,1,Malware,2023,April
+South Korea,APT37,3,Phishing,2023,July
+South Korea,APT37,1,Phishing,2023,April
+South Korea,APT37,2,Phishing,2023,October
+South Korea,APT37,3,Phishing,2023,October
+South Korea,APT37,3,Phishing,2023,June
+Australia,APT32,5,Phishing,2023,August
+Australia,APT32,5,Phishing,2023,May
+Australia,APT32,3,Malware,2023,May
+Australia,APT32,2,Malware,2023,October
+Canada,APT29,2,Phishing,2023,April
+Canada,APT29,2,Phishing,2023,July
+Canada,APT29,2,Phishing,2023,June
+Canada,APT29,2,Phishing,2023,June
+Canada,APT29,2,Malware,2023,August
+Canada,APT29,2,Malware,2023,November
+India,APT41,2,Exploitation de vulnérabilités,2023,January
+India,APT41,2,Exploitation de vulnérabilités,2023,November
+India,APT41,2,Exploitation de vulnérabilités,2023,March
+India,APT41,2,Exploitation de vulnérabilités,2023,October
+India,APT41,3,Exploitation de vulnérabilités,2023,June
+India,APT41,2,Exploitation de vulnérabilités,2023,May
+India,APT41,1,Exploitation de vulnérabilités,2023,February
+India,APT41,5,Phishing,2023,January
+India,APT41,1,Phishing,2023,April
+India,APT41,2,Phishing,2023,March
+India,APT41,1,Phishing,2023,April
+Brazil,APT28,4,Phishing,2023,March
+Brazil,APT28,3,Phishing,2023,February
+Brazil,APT28,3,Malware,2023,July
+South Africa,APT29,4,Phishing,2023,March
+South Africa,APT29,1,Phishing,2023,October
+South Africa,APT29,2,Malware,2023,June
+Russia,APT29,4,Credential Theft,2023,November
+Russia,APT29,4,Credential Theft,2023,December
+Russia,APT29,5,Credential Theft,2023,May
+Russia,APT29,1,Credential Theft,2023,May
+Russia,APT29,4,Credential Theft,2023,November
+Russia,APT29,2,Credential Theft,2023,June
+Russia,APT28,2,Phishing,2023,November
+Russia,APT28,2,Phishing,2023,May
+Russia,APT28,5,Phishing,2023,November
+Russia,APT28,2,Phishing,2023,January
+Russia,APT28,4,Phishing,2023,April
+China,APT41,5,Exploitation de vulnérabilités,2023,April
+China,APT41,5,Exploitation de vulnérabilités,2023,August
+China,APT41,5,Exploitation de vulnérabilités,2023,December
+China,APT41,2,Exploitation de vulnérabilités,2023,February
+China,APT41,5,Exploitation de vulnérabilités,2023,July
+China,APT41,4,Exploitation de vulnérabilités,2023,October
+China,APT41,3,Exploitation de vulnérabilités,2023,May
+China,APT41,1,Exploitation de vulnérabilités,2023,September
+China,APT10,4,Credential Theft,2023,November
+China,APT10,4,Credential Theft,2023,September
+China,APT10,2,Credential Theft,2023,July
+China,APT10,2,Credential Theft,2023,June
+China,APT10,5,Credential Theft,2023,October
+China,APT10,1,Credential Theft,2023,January
+Iran,APT33,4,Phishing,2023,February
+Iran,APT33,5,Phishing,2023,October
+Iran,APT33,1,Phishing,2023,November
+Iran,APT33,1,Phishing,2023,January
+Iran,APT33,1,Phishing,2023,April
+Iran,APT34,1,Malware,2023,July
+Iran,APT34,5,Malware,2023,December
+Iran,APT34,1,Malware,2023,July
+North Korea,APT37,4,Malware,2023,November
+North Korea,APT37,2,Malware,2023,August
+North Korea,APT37,3,Malware,2023,February
+North Korea,APT37,4,Malware,2023,May
+North Korea,APT37,2,Malware,2023,June
+North Korea,APT37,4,Malware,2023,April
+North Korea,APT37,1,Malware,2023,November
+North Korea,APT37,2,Malware,2023,December
+North Korea,APT38,4,Cryptojacking,2023,September
+North Korea,APT38,5,Cryptojacking,2023,January
+North Korea,APT38,4,Cryptojacking,2023,May
+North Korea,APT38,4,Cryptojacking,2023,January
+North Korea,APT38,1,Cryptojacking,2023,August
+North Korea,APT38,1,Cryptojacking,2023,August
+Israel,APT34,3,Phishing,2023,February
+Israel,APT34,1,Phishing,2023,December
+Israel,APT34,1,Phishing,2023,November
+Israel,APT34,4,Phishing,2023,November
+Israel,APT34,1,Phishing,2023,April
+Israel,APT41,2,Malware,2023,December
+Israel,APT41,1,Malware,2023,May
+Israel,APT41,2,Malware,2023,November
+Israel,APT41,1,Malware,2023,October

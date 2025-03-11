@@ -1,0 +1,98 @@
+Country,APT Group,Attacks,Type,Year,Month
+USA,APT31,3,Credential Theft,2024,August
+USA,APT31,4,Credential Theft,2024,June
+USA,APT31,4,Credential Theft,2024,October
+USA,APT31,1,Credential Theft,2024,October
+USA,APT41,5,Ransomware,2024,April
+USA,APT41,1,Ransomware,2024,November
+France,APT31,4,Exploitation de vulnérabilités,2024,September
+France,APT31,3,Exploitation de vulnérabilités,2024,December
+France,APT29,4,Ransomware,2024,October
+Germany,APT29,3,Credential Theft,2024,September
+Germany,APT29,5,Credential Theft,2024,December
+Germany,APT29,5,Credential Theft,2024,November
+Germany,APT29,1,Credential Theft,2024,September
+Germany,APT41,1,Supply Chain Attack,2024,June
+Germany,APT41,4,Supply Chain Attack,2024,December
+Germany,APT41,1,Supply Chain Attack,2024,August
+Germany,APT41,3,Supply Chain Attack,2024,November
+UK,APT31,1,Exploitation de vulnérabilités,2024,December
+UK,APT31,3,Exploitation de vulnérabilités,2024,February
+UK,APT31,5,Exploitation de vulnérabilités,2024,March
+UK,APT31,1,Exploitation de vulnérabilités,2024,August
+UK,APT41,5,Ransomware,2024,March
+Japan,APT29,2,Malware,2024,February
+Japan,APT29,1,Malware,2024,December
+Japan,APT29,3,Malware,2024,January
+Japan,APT29,4,Malware,2024,February
+Japan,APT29,2,Malware,2024,November
+Japan,APT41,5,Ransomware,2024,February
+Japan,APT41,1,Ransomware,2024,August
+Japan,APT41,2,Ransomware,2024,September
+South Korea,APT10,2,Credential Theft,2024,April
+South Korea,APT10,2,Credential Theft,2024,August
+South Korea,APT10,2,Credential Theft,2024,April
+South Korea,APT10,2,Credential Theft,2024,May
+South Korea,APT10,2,Credential Theft,2024,July
+South Korea,APT41,5,Ransomware,2024,June
+South Korea,APT41,1,Ransomware,2024,January
+Australia,APT29,3,Exploitation de vulnérabilités,2024,October
+Australia,APT29,3,Exploitation de vulnérabilités,2024,November
+Australia,APT41,1,Ransomware,2024,June
+Australia,APT41,2,Ransomware,2024,January
+Canada,APT41,5,Supply Chain Attack,2024,October
+Canada,APT31,3,Ransomware,2024,January
+India,APT10,4,Credential Theft,2024,March
+India,APT10,2,Credential Theft,2024,January
+India,APT10,1,Credential Theft,2024,April
+India,APT31,5,Ransomware,2024,July
+India,APT31,1,Ransomware,2024,January
+Brazil,APT41,2,Exploitation de vulnérabilités,2024,May
+Brazil,APT41,1,Exploitation de vulnérabilités,2024,October
+Brazil,APT41,2,Exploitation de vulnérabilités,2024,May
+Brazil,APT29,1,Ransomware,2024,March
+Brazil,APT29,1,Ransomware,2024,November
+South Africa,APT28,3,Ransomware,2024,June
+Russia,APT41,5,Supply Chain Attack,2024,August
+Russia,APT41,1,Supply Chain Attack,2024,March
+Russia,APT41,3,Supply Chain Attack,2024,March
+Russia,APT41,1,Supply Chain Attack,2024,November
+Russia,APT41,1,Supply Chain Attack,2024,August
+Russia,APT41,1,Supply Chain Attack,2024,August
+Russia,APT31,4,Ransomware,2024,April
+Russia,APT31,2,Ransomware,2024,March
+Russia,APT31,1,Ransomware,2024,May
+Russia,APT31,1,Ransomware,2024,May
+Russia,APT31,1,Ransomware,2024,October
+China,APT29,3,Phishing,2024,December
+China,APT29,4,Phishing,2024,February
+China,APT29,4,Phishing,2024,November
+China,APT29,1,Phishing,2024,January
+China,APT29,3,Phishing,2024,August
+China,APT31,3,Ransomware,2024,May
+China,APT31,1,Ransomware,2024,March
+China,APT31,3,Ransomware,2024,October
+China,APT31,1,Ransomware,2024,April
+China,APT31,2,Ransomware,2024,May
+China,APT31,1,Ransomware,2024,March
+China,APT31,1,Ransomware,2024,May
+Iran,APT39,3,Credential Theft,2024,October
+Iran,APT39,1,Credential Theft,2024,August
+Iran,APT39,1,Credential Theft,2024,March
+Iran,APT41,3,Ransomware,2024,December
+Iran,APT41,1,Ransomware,2024,April
+North Korea,APT39,1,Phishing,2024,May
+North Korea,APT39,2,Phishing,2024,October
+North Korea,APT39,3,Phishing,2024,October
+North Korea,APT39,3,Phishing,2024,October
+North Korea,APT39,1,Phishing,2024,December
+North Korea,APT39,3,Phishing,2024,March
+North Korea,APT39,2,Phishing,2024,September
+North Korea,APT41,2,Ransomware,2024,January
+North Korea,APT41,3,Ransomware,2024,May
+North Korea,APT41,1,Ransomware,2024,October
+North Korea,APT41,1,Ransomware,2024,March
+North Korea,APT41,1,Ransomware,2024,October
+Israel,APT39,5,Credential Theft,2024,August
+Israel,APT31,3,Ransomware,2024,August
+Israel,APT31,1,Ransomware,2024,April
