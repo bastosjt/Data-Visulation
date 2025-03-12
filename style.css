@@ -74,7 +74,7 @@ body{
     max-width: 1400px;
 }
 
-#filters, #donut_2023_2024{
+#filters{
     font-family: "Pontano Sans", sans-serif;
     font-weight: 600;
     display: flex;
@@ -93,6 +93,17 @@ body{
     margin: 15px 15px 15px 0px;
     color: #ffffff;
     text-transform: uppercase;
+}
+
+#donut_2023_2024{
+    font-family: "Pontano Sans", sans-serif;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    margin-right: 25px;
+    padding: 0 20px 0px 20px;
+    height: 450px;
+    width: 250px;
 }
 
 input[type="radio"] {
@@ -116,7 +127,7 @@ label {
 
 #donut_2023_2024{
     margin-top: 24px;
-    height: 270px;
+    height: 300px;
 }
 
 #data_visulation{
@@ -184,4 +195,11 @@ label {
     margin-top: 25px;
     width: 1125px;
     height: 300px;
+}
+
+#donut{
+    width: 180px;
+    height: 270px;
+    padding-left: 35px;
+    padding-right: 35px;
 }
