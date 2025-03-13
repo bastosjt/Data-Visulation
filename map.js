@@ -33,6 +33,9 @@ Promise.all([
         filtersDiv.appendChild(label);
     });
 
+    const firstSelectedType = document.querySelector("#filters input:checked")?.value;
+    document.dispatchEvent(new CustomEvent("attackTypeChanged", { detail: { selectedType: firstSelectedType } }));
+
     const firstRadio = document.querySelector("#filters input");
     if (firstRadio) {
         firstRadio.checked = true;
@@ -75,7 +78,7 @@ Promise.all([
         const maxAttacks = d3.max(Array.from(attackData.values())) || 1;
         const colorScale = d3.scaleLinear()
             .domain([0, maxAttacks])
-            .range(["rgba(255, 255, 255)", "rgba(216, 38, 0)"]);
+            .range(["#fafafa", "#d82701"]);
 
         svgMap.selectAll("path")
             .data(world.features)
@@ -149,8 +152,10 @@ Promise.all([
         input.addEventListener("change", function() {
             applyCheckedStyle();
             updateMap();
+            const selectedType = document.querySelector("#filters input:checked")?.value;
+            document.dispatchEvent(new CustomEvent("attackTypeChanged", { detail: { selectedType } }));
         });
-    });
+    });    
 
     applyCheckedStyle();
     updateMap();

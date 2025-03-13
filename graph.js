@@ -10,10 +10,6 @@ const svgGraph = d3.select("#graph")
 
 d3.csv("data.csv").then((data) => {
 
-    const colorScale = d3.scaleLinear()
-        .domain([0, d3.max(data, d => +d.Attacks) || 1])
-        .range(["rgba(255, 255, 255)", "rgba(216, 38, 0)"]);
-
     function updateGraph() {
         const selectedType = document.querySelector("#filters input:checked")?.value;
 
@@ -28,7 +24,7 @@ d3.csv("data.csv").then((data) => {
         );
 
         const attackCountries = Array.from(groupedData, ([Country, Attacks]) => ({ Country, Attacks }))
-            .sort((a, b) => b.Attacks - a.Attacks);
+            .sort((a, b) => b.Attacks - a.Attacks)
 
         const xScale = d3.scaleBand()
             .domain(attackCountries.map(d => d.Country))
@@ -39,6 +35,17 @@ d3.csv("data.csv").then((data) => {
             .domain([0, d3.max(attackCountries, d => d.Attacks)])
             .nice()
             .range([graphHeight - graphMargin.top - graphMargin.bottom, 0]);
+        
+        const attackData = d3.rollup(
+                filteredData,
+                v => d3.sum(v, d => +d.Attacks),
+                d => d.Country
+            );
+    
+        const maxAttacks = d3.max(Array.from(attackData.values())) || 1;
+        const colorScale = d3.scaleLinear()
+                .domain([0, maxAttacks])
+                .range(["#fafafa", "#d82701"]);
 
         svgGraph.selectAll(".grid-line").remove();
 
@@ -78,7 +85,7 @@ d3.csv("data.csv").then((data) => {
             .attr("class", "y-axis")
             .call(d3.axisLeft(yScale))
             .style("font-family", '"Fira Mono", monospace')
-            .style("color", "#ffffff95")
+            .style("color", "#ffffff95");
 
         svgGraph.selectAll("rect")
             .data(attackCountries)
@@ -88,13 +95,14 @@ d3.csv("data.csv").then((data) => {
                     .attr("width", xScale.bandwidth())
                     .attr("y", graphHeight - graphMargin.top - graphMargin.bottom)
                     .attr("height", 0)
-                    .attr("fill", d => colorScale(d.Attacks))
+                    .attr("fill", "#ffffff")
                     .transition()
                     .duration(800)
                     .ease(d3.easeCubicOut)
                     .attr("y", d => yScale(d.Attacks))
-                    .attr("height", d => graphHeight - graphMargin.top - graphMargin.bottom - yScale(d.Attacks)),
-
+                    .attr("height", d => graphHeight - graphMargin.top - graphMargin.bottom - yScale(d.Attacks))
+                    .attr("fill", d => colorScale(d.Attacks)),
+        
                 update => update
                     .transition()
                     .duration(800)
@@ -102,14 +110,16 @@ d3.csv("data.csv").then((data) => {
                     .attr("x", d => xScale(d.Country))
                     .attr("width", xScale.bandwidth())
                     .attr("y", d => yScale(d.Attacks))
-                    .attr("height", d => graphHeight - graphMargin.top - graphMargin.bottom - yScale(d.Attacks)),
-
+                    .attr("height", d => graphHeight - graphMargin.top - graphMargin.bottom - yScale(d.Attacks))
+                    .attr("fill", d => colorScale(d.Attacks)),
+        
                 exit => exit.remove()
             );
     }
 
-    document.querySelectorAll("#filters input").forEach(input => {
-        input.addEventListener("change", updateGraph);
+    document.addEventListener("attackTypeChanged", (event) => {
+        const selectedType = event.detail.selectedType;
+        updateGraph(selectedType);
     });
 
     updateGraph();
