@@ -1,7 +1,7 @@
 d3.csv("data.csv").then((data) => {
     
     function updateChartPie() {
-        const selectedType = document.querySelector("#filters input:checked")?.value;
+        const selectedType = document.querySelector("#filters input:checked")?.value || null;
 
         const filteredData = selectedType 
             ? data.filter(d => d.Type === selectedType) 
@@ -130,9 +130,10 @@ d3.csv("data.csv").then((data) => {
         legend.exit().remove();
     }
 
-    document.querySelectorAll("#filters input").forEach(input => {
-        input.addEventListener("change", updateChartPie);
-    });
+    document.addEventListener("attackTypeChanged", (event) => {
+        const selectedType = event.detail.selectedType;
+        updateChartPie(selectedType);
+    });      
 
     updateChartPie();
 });
