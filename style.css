@@ -134,7 +134,7 @@ label {
     display: flex;
 }
 
-#filters, #map_details, #graph_details, #chartpie_details, #graph_details_2023_2024, #donut_2023_2024{
+#filters, #map_details, #graph_details, #chartpie_details, #graph_details_2023_2024, #donut_2023_2024, #globe_data{
     box-shadow: 0px 0px 10px 7px rgba(255, 255, 255, 0.075);
     background-color: #1a1d27;
     border-radius: 5px;
@@ -202,4 +202,15 @@ label {
     height: 270px;
     padding-left: 35px;
     padding-right: 35px;
+}
+
+#globe_data{
+    max-width: 1450px;
+    margin: 0 auto;
+}
+
+#globe{
+    width: 600px;
+    height: 600px;
+    margin: 0 400px;
 }
