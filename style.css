@@ -145,7 +145,7 @@ label {
     transition: 0.2s ease;
 }
 
-#map_details:hover, #graph_details:hover, #chartpie_details:hover, #graph_details_2023_2024:hover, #donut_2023_2024:hover{
+#map_details:hover, #graph_details:hover, #chartpie_details:hover, #graph_details_2023_2024:hover, #donut_2023_2024:hover, #globe_data:hover{
     box-shadow: 0px 0px 15px 10px rgba(255, 255, 255, 0.2);
     transition: 0.2s ease;
 }
