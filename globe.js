@@ -2,9 +2,8 @@ const width = 600, height = 600;
 const globeProjection = d3.geoOrthographic().scale(280).translate([width / 2, height / 2]);
 const globePath = d3.geoPath().projection(globeProjection);
 const svg = d3.select("#globe");
-const graticule = d3.geoGraticule();
-const label = document.getElementById("country-label");
 
+const graticule = d3.geoGraticule();
 svg.append("path")
     .datum(graticule())
     .attr("fill", "none")
@@ -12,7 +11,7 @@ svg.append("path")
     .attr("d", globePath);
 
 d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then(world => {
-    svg.selectAll(".country")
+    const countries = svg.selectAll(".country")
         .data(world.features)
         .enter().append("path")
         .attr("class", "country")
@@ -22,7 +21,17 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
         .on("click", function(event, d) {
             d3.selectAll(".country").transition().duration(300).attr("fill", "#242936");
             d3.select(this).transition().duration(300).attr("fill", "#ff7700");
-            showLabel(d.properties.name, event.pageX, event.pageY);
+        })
+        .on("mouseover", function(event, d) {
+            tooltip.style("visibility", "visible")
+                   .text(d.properties.name);
+        })
+        .on("mousemove", function(event) {
+            tooltip.style("top", (event.pageY - 10) + "px")
+                   .style("left", (event.pageX + 10) + "px");
+        })
+        .on("mouseout", function() {
+            tooltip.style("visibility", "hidden");
         });
 });
 
@@ -46,18 +55,14 @@ svg.call(d3.drag()
     })
 );
 
-function showLabel(countryName, x, y) {
-    label.style.left = `${x + 10}px`;
-    label.style.top = `${y}px`;
-    label.style.opacity = 1;
-    label.innerHTML = "";
-    let i = 0;
-    function typeWriter() {
-        if (i < countryName.length) {
-            label.innerHTML += countryName.charAt(i);
-            i++;
-            setTimeout(typeWriter, 100);
-        }
-    }
-    typeWriter();
-}
+// Ajout du tooltip pour afficher le nom du pays
+const tooltip = d3.select("body").append("div")
+    .style("position", "absolute")
+    .style("background", "#1a1d27")
+    .style("color", "cyan")
+    .style("padding", "5px 10px")
+    .style("border-radius", "5px")
+    .style("font-family", "'Fira Mono', monospace")
+    .style("font-size", "0.9rem")
+    .style("visibility", "hidden")
+    .style("pointer-events", "none");
