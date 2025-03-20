@@ -10,6 +10,32 @@ svg.append("path")
     .attr("stroke", "#414861")
     .attr("d", globePath);
 
+let isRotating = true;
+let isZoomed = false;
+let lastInteraction = Date.now();
+let selectedCountry = null;
+
+// Drag pour bouger la Terre
+const drag = d3.drag()
+    .on("start", () => isRotating = false)
+    .on("drag", (event) => {
+        const rotate = globeProjection.rotate();
+        const sensitivity = 0.5;
+        globeProjection.rotate([rotate[0] + event.dx * sensitivity, rotate[1] - event.dy * sensitivity]);
+        svg.selectAll("path").attr("d", globePath);
+        lastInteraction = Date.now();
+    })
+    .on("end", () => {
+        setTimeout(() => {
+            if (Date.now() - lastInteraction > 3000 && !isZoomed) {
+                resetCountryColor();
+                isRotating = true;
+            }
+        }, 3000);
+    });
+
+svg.call(drag);
+
 d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then(world => {
     const countries = svg.selectAll(".country")
         .data(world.features)
@@ -19,9 +45,13 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
         .attr("stroke", "#414861")
         .attr("d", globePath)
         .on("click", function(event, d) {
-            isRotating = false; 
-            d3.selectAll(".country").transition().duration(300).attr("fill", "#242936");
-            d3.select(this).transition().duration(300).attr("fill", "#ff7700");
+            isRotating = false;
+            isZoomed = true;
+            lastInteraction = Date.now();
+            
+            resetCountryColor();
+            selectedCountry = d3.select(this);
+            selectedCountry.transition().duration(300).attr("fill", "#ff7700");
 
             const centroid = d3.geoCentroid(d);
             d3.transition().duration(1000)
@@ -40,17 +70,6 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
                             svg.selectAll("path").attr("d", globePath);
                         };
                     });
-
-                    setTimeout(() => {
-                        d3.transition().duration(1000).tween("zoomOut", () => {
-                            const s = d3.interpolate(globeProjection.scale(), 280);
-                            return t => {
-                                globeProjection.scale(s(t));
-                                svg.selectAll("path").attr("d", globePath);
-                            };
-                        });
-                        isRotating = true;
-                    }, 3000);
                 });
         })
         .on("mouseover", function(event, d) {
@@ -65,13 +84,41 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
         });
 });
 
-let isRotating = true;
+// Réinitialisation au clic en dehors des pays
+svg.on("click", function(event) {
+    if (!event.target.classList.contains("country") && isZoomed) {
+        isZoomed = false;
+        lastInteraction = Date.now();
+        d3.transition().duration(1000).tween("zoomOut", () => {
+            const s = d3.interpolate(globeProjection.scale(), 280);
+            return t => {
+                globeProjection.scale(s(t));
+                svg.selectAll("path").attr("d", globePath);
+            };
+        }).on("end", () => {
+            resetCountryColor();
+            isRotating = true;
+        });
+    }
+});
+
+function resetCountryColor() {
+    if (selectedCountry) {
+        selectedCountry.transition().duration(300).attr("fill", "#242936");
+        selectedCountry = null;
+    }
+}
+
 function autoRotate() {
     if (isRotating) {
         const rotation = globeProjection.rotate();
-        rotation[0] += 0.15;
+        rotation[0] -= 0.15;
         globeProjection.rotate(rotation);
         svg.selectAll("path").attr("d", globePath);
+
+        if (Date.now() - lastInteraction > 3000 && selectedCountry) {
+            resetCountryColor();
+        }
     }
     requestAnimationFrame(autoRotate);
 }
