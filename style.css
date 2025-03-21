@@ -201,6 +201,10 @@ label {
     height: 300px;
 }
 
+#graph_year{
+    margin: 50px 35px;
+}
+
 #donut{
     width: 181px;
     height: 270px;
