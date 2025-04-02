@@ -18,3 +18,7 @@ Les données utilisées concernent des attaques en cybersécurité et sont stock
 - Le pays cible de l'attaque
 - Le type d'attaque
 - Le nombre d'incidents
+
+## Lien du projet
+Le projet est publié et visible sur le lien ci-dessous :
+https://bastosjt.github.io/Data-Visulation/
