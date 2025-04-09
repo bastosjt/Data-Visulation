@@ -50,25 +50,29 @@ d3.csv("data.csv").then((data) => {
             .nice()
             .range([graphYearHeight - 20, 20]);
 
-        svgGraphYear.selectAll(".line, .dot-orange, .dot-blue").remove();
-
-        function createLine(color, data) {
+        function createLine(color, data, className) {
             const line = d3.line()
                 .x(d => xScale(d.Month))
                 .y(d => yScale(d.Attacks))
                 .curve(d3.curveMonotoneX);
 
-            svgGraphYear.append("path")
-                .datum(data)
-                .attr("class", "line")
+            const path = svgGraphYear.selectAll(`.${className}`)
+                .data([data]);
+
+            path.enter()
+                .append("path")
+                .attr("class", className)
                 .attr("fill", "none")
                 .attr("stroke", color)
                 .attr("stroke-width", 2)
+                .merge(path)
+                .transition()
+                .duration(800)
+                .ease(d3.easeCubicOut)
                 .attr("d", line);
-        }
 
-        createLine("#ff7500", attackMonths2023);
-        createLine("#473a77", attackMonths2024);
+            path.exit().remove();
+        }
 
         function createDots(color, data, className) {
             const dots = svgGraphYear.selectAll(`.${className}`)
@@ -76,22 +80,28 @@ d3.csv("data.csv").then((data) => {
 
             dots.enter().append("circle")
                 .attr("class", className)
-                .merge(dots)
                 .attr("cx", d => xScale(d.Month))
-                .attr("cy", d => yScale(d.Attacks))
+                .attr("cy", graphYearHeight - 20)
                 .attr("r", 5)
-                .attr("fill", color);
+                .attr("fill", color)
+                .merge(dots)
+                .transition()
+                .duration(800)
+                .ease(d3.easeCubicOut)
+                .attr("cx", d => xScale(d.Month))
+                .attr("cy", d => yScale(d.Attacks));
 
             dots.exit().remove();
         }
 
+        createLine("#ff7500", attackMonths2023, "line-orange");
+        createLine("#473a77", attackMonths2024, "line-blue");
         createDots("#ff7500", attackMonths2023, "dot-orange");
         createDots("#473a77", attackMonths2024, "dot-blue");
 
         svgGraphYear.selectAll(".grid-line").remove();
 
         const yTicks = d3.range(0, yMax + 1, 5);
-
         svgGraphYear.selectAll(".grid-line")
             .data(yTicks)
             .join("line")
@@ -142,5 +152,11 @@ d3.csv("data.csv").then((data) => {
         input.addEventListener("change", updateGraph);
     });
 
-    updateGraph();
+    const waitForInput = setInterval(() => {
+        const selectedType = document.querySelector("#filters input:checked")?.value;
+        if (selectedType) {
+            clearInterval(waitForInput);
+            updateGraph();
+        }
+    }, 50);
 });
